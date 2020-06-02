@@ -1,25 +1,44 @@
-var generateBtn = document.querySelector("#generate");
+// Assignment Code
+var generateBtn = document.querySelector('generate');
 const resultEl = document.getElementById('result');
 const lengthEl = document.getElementById('length');
-const uppercaseEl = document.getElementById('uppercase');
-const lowercaseEl = document.getElementById('lowercase');
+const uppercaseEl =
+document.getElementById('uppercase');
+const lowercaseEl = 
+document.getElementById('lowercase');
 const numbersEl = document.getElementById('numbers');
 const symbolsEl = document.getElementById('symbols');
-
-const clipboard = document.getElementById('clipboard');
+const generateEl = 
+document.getElementById('generate')
+const clipboard =
+document.getElementById('clipboard');
 
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
-  var passwordText = document.querySelector("#password");
+  var passwordText = document.querySelector('password');
 
   passwordText.value = password;
 
 }
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
 
+generate.addEventListener('click',() => {
+	const length = +lengthEl.value;
+	const hasLower = lowercaseEl.checked;
+	const hasUpper = uppercaseEl.checked;
+	const hasNumber = numbersEl.checked;
+	const hasSymbol = symbolsEl.checked;
+	
+	resultEl.innerText = generatePassword(
+		hasLower, 
+		hasUpper, 
+		hasNumber, 
+		hasSymbol, 
+		length
+	);
+});
 
 
 
@@ -29,30 +48,6 @@ const randomFunc = {
 	number: getRandomNumber,
 	symbol: getRandomSymbol
 }
-
-clipboard.addEventListener('click', () => {
-	const textarea = document.createElement('textarea');
-	const password = resultEl.innerText;
-	
-	if(!password) { return; }
-	
-	textarea.value = password;
-	document.body.appendChild(textarea);
-	textarea.select();
-	document.execCommand('copy');
-	textarea.remove();
-	alert('Password copied to clipboard');
-});
-
-generate.addEventListener('click', () => {
-	const length = +lengthEl.value;
-	const hasLower = lowercaseEl.checked;
-	const hasUpper = uppercaseEl.checked;
-	const hasNumber = numbersEl.checked;
-	const hasSymbol = symbolsEl.checked;
-	
-	resultEl.innerText = generatePassword(hasLower, hasUpper, hasNumber, hasSymbol, length);
-});
 
 function generatePassword(lower, upper, number, symbol, length) {
 	let generatedPassword = '';
