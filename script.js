@@ -5,7 +5,7 @@ const uppercaseEl = document.getElementById('uppercase');
 const lowercaseEl = document.getElementById('lowercase');
 const numbersEl = document.getElementById('numbers');
 const symbolsEl = document.getElementById('symbols');
-const generateEl = document.getElementById('generate');
+
 const clipboard = document.getElementById('clipboard');
 
 // Write password to the #password input
